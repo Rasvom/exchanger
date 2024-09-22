@@ -5,11 +5,14 @@ import { RouterProvider } from 'react-router-dom';
 import { store } from './store';
 import router from './router';
 import './styles/styles.css';
+import { ChakraProvider } from '@chakra-ui/react';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
     </Provider>
   </React.StrictMode>,
 );

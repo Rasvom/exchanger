@@ -1,55 +1,49 @@
 import api from '@store/slices/api';
-
-interface LoginRequest {
-  login: string;
-  password: string;
-}
-
-interface RegisterRequest extends LoginRequest {
-  fullName: string;
-  email: string;
-}
-
-interface AuthResponse {
-  accessToken: string;
-}
-
-interface UserProfile {
-  id: string;
-  email: string;
-  fullName: string;
-}
+import {
+  AuthResponse,
+  LoginRequest,
+  UserProfile,
+  RegisterRequest,
+  SendConfirmationCodeRequest,
+  VerifyConfirmationCodeRequest,
+} from './types';
 
 const authService = api.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<AuthResponse, LoginRequest>({
-      query: (credentials) => ({
-        url: '/login',
+      query: (QueryArg) => ({
+        url: '/user-service/login',
         method: 'POST',
-        body: credentials,
+        body: QueryArg,
       }),
     }),
-    register: builder.mutation<UserProfile, RegisterRequest>({
-      query: (data) => ({
-        url: '/register',
+    registration: builder.mutation<UserProfile, RegisterRequest>({
+      query: (queryArg) => ({
+        url: '/user-service/registration',
         method: 'POST',
-        body: data,
+        body: queryArg,
       }),
     }),
-    getProfile: builder.query<UserProfile, void>({
-      query: () => ({
-        url: '/profile',
-        method: 'GET',
+    sendConfirmationCode: builder.mutation<void, SendConfirmationCodeRequest>({
+      query: (queryArg) => ({
+        url: '/user-service/send-confirmation-code',
+        method: 'POST',
+        body: queryArg,
       }),
     }),
-    logout: builder.mutation<{ message: string }, void>({
-      query: () => ({
-        url: '/logout',
+    verifyConfirmationCode: builder.mutation<void, VerifyConfirmationCodeRequest>({
+      query: (queryArg) => ({
+        url: '/user-service/verify-confirmation-code',
         method: 'POST',
+        body: queryArg,
       }),
     }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useGetProfileQuery, useLogoutMutation } =
-  authService;
+export const {
+  useLoginMutation,
+  useRegistrationMutation,
+  useSendConfirmationCodeMutation,
+  useVerifyConfirmationCodeMutation,
+} = authService;

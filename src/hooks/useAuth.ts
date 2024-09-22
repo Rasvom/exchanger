@@ -7,7 +7,7 @@ const useAuth = () => {
   const token = useAppSelector((state) => state.auth.token);
   const [loginMutation, { error, isLoading }] = useLoginMutation();
 
-  const login = async (credentials: { login: string; password: string }) => {
+  const login = async (credentials: { email: string; password: string }) => {
     try {
       const response = await loginMutation(credentials).unwrap();
       dispatch(setToken(response.accessToken));

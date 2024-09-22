@@ -1,15 +1,15 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '@store/useReduxHooks';
 
-const ProtectedRoute: React.FC = () => {
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = useAppSelector((state) => state.auth.token);
 
   if (!token) {
     return <Navigate to='/login' />;
   }
 
-  return <Outlet />;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

@@ -5,7 +5,7 @@ import DesktopNavbar from './DesktopNavbar';
 
 const Header = () => {
   const [isMobile, isTablet, isDesktop] = useMediaQuery([
-    '(max-width: 479px)', // Mobile
+    '(max-width: 479px)',
     '(min-width: 480px) and (max-width: 767px)',
     '(min-width: 768px)',
   ]);

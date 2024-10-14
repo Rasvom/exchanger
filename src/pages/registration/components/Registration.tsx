@@ -1,12 +1,12 @@
 import { Box } from '@chakra-ui/react';
-import RegistrationForm from './components/RegistrationForm';
-import RegistrationStatus from './components/RegistrationStatus';
+import RegistrationForm from './RegistrationForm';
+import RegistrationStatus from './RegistrationStatus';
 import {
   useRegistrationMutation,
   useSendConfirmationCodeMutation,
   useVerifyConfirmationCodeMutation,
 } from '@store/slices/api/auth-service';
-import { RegistrationFormValues } from './types';
+import { RegistrationFormValues } from '../types';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useShowToastNotification from '@hooks/useShowToastNotification';

@@ -7,9 +7,10 @@ interface Props {
   placeholder?: string;
   Icon?: JSX.ElementType;
   label?: string;
+  type?: string;
 }
 
-const InputField = ({ name, required, placeholder, Icon, label, ...rest }: Props) => {
+const InputField = ({ name, required, placeholder, type, Icon, label, ...rest }: Props) => {
   const { control } = useFormContext();
 
   return (
@@ -37,7 +38,7 @@ const InputField = ({ name, required, placeholder, Icon, label, ...rest }: Props
               isInvalid={fieldState.invalid}
               autoComplete='off'
               borderColor='#474D57'
-              type='email'
+              type={type}
               _hover={{
                 borderColor: '#F0B90B',
               }}

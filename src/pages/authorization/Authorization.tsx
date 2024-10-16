@@ -1,13 +1,14 @@
 import { Box, Button } from '@chakra-ui/react';
-import { useForm, Controller } from 'react-hook-form';
-import { Input } from '@chakra-ui/react';
+import { FormProvider, useForm } from 'react-hook-form';
+import InputField from '@components/InputField';
+import { AtSignIcon, LockIcon } from '@chakra-ui/icons';
+import useAuth from '@hooks/useAuth';
+import useShowToastNotification from '@hooks/useShowToastNotification';
 
 const Authorization = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { login, infoLogin } = useAuth();
+
+  const methods = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -15,56 +16,42 @@ const Authorization = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
-    // Обработайте данные формы здесь
+    login(data);
   };
 
+  useShowToastNotification(infoLogin, {
+    isShowError: true,
+    isShowSuccess: false,
+    errorTitle: 'Что-то пошло не так =(',
+  });
   return (
-    <Box display={'flex'} justifyContent={'center'}>
-      <Box maxWidth={'sm'}>
-        <Box>Вход в систему</Box>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Controller
-            name='email'
-            control={control}
-            rules={{
-              required: 'Email обязателен',
-              pattern: {
-                value: /^\S+@\S+$/i,
-                message: 'Введите корректный email',
-              },
-            }}
-            render={({ field }) => (
-              <Input
-                variant='outlined'
-                margin='normal'
-                required
-                id='email'
-                autoComplete='email'
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            name='password'
-            control={control}
-            rules={{ required: 'Пароль обязателен' }}
-            render={({ field }) => (
-              <Input
-                variant='outlined'
-                margin='normal'
-                required
-                type='password'
-                id='password'
-                autoComplete='current-password'
-                {...field}
-              />
-            )}
-          />
-          <Button type='submit'>Войти</Button>
-        </form>
+    <FormProvider {...methods}>
+      <Box display={'flex'} justifyContent={'center'}>
+        <Box maxWidth={'sm'}>
+          <Box>Вход в систему</Box>
+          <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+            <InputField
+              name='email'
+              label='Эл. почта'
+              placeholder='Эл. почта'
+              required={true}
+              Icon={AtSignIcon}
+            />
+            <InputField
+              name='password'
+              label='Пароль'
+              placeholder='Пароль'
+              required={true}
+              Icon={LockIcon}
+              type='password'
+            />
+            <Button type='submit' isLoading={infoLogin?.isLoading} bg={'#F0B90B'}>
+              Войти
+            </Button>
+          </form>
+        </Box>
       </Box>
-    </Box>
+    </FormProvider>
   );
 };
 

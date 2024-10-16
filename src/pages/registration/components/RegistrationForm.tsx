@@ -63,6 +63,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
                 placeholder='Пароль'
                 required={true}
                 Icon={LockIcon}
+                type='password'
               />
             </>
           )}

@@ -5,7 +5,7 @@ import { setToken, clearToken } from '@store/slices/authorization';
 const useAuth = () => {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
-  const [loginMutation, { error, isLoading }] = useLoginMutation();
+  const [loginMutation, infoLogin] = useLoginMutation();
 
   const login = async (credentials: { email: string; password: string }) => {
     try {
@@ -21,7 +21,7 @@ const useAuth = () => {
     document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   };
 
-  return { token, login, logout, isLoading, error };
+  return { token, login, logout, infoLogin };
 };
 
 export default useAuth;

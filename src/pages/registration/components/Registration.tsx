@@ -47,24 +47,31 @@ const Registration = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      // navigate('/login');
+      navigate('/login');
     }
-  }, [isSuccess]);
+  }, [isSuccess, navigate]);
 
   useShowToastNotification(infoSendCode, {
     isShowError: true,
-    isShowSuccess: true,
+    isShowSuccess: false,
+    errorTitle: 'Что-то пошло не так =(',
   });
 
   useShowToastNotification(infoVerifyCode, {
     isShowError: true,
-    isShowSuccess: true,
+    isShowSuccess: false,
+    errorTitle: 'Что-то пошло не так =(',
   });
 
-  useShowToastNotification(infoRegistration, {
-    isShowError: true,
-    isShowSuccess: true,
-  });
+  useShowToastNotification(
+    { ...infoRegistration, isSuccess },
+    {
+      isShowError: true,
+      isShowSuccess: true,
+      errorTitle: 'Что-то пошло не так =(',
+      successTitle: 'Регистрация прошла успешно',
+    },
+  );
 
   return (
     <>

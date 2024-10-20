@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 interface RegistrationStatusProps {
   isSuccessSendCode: boolean;
@@ -11,13 +11,13 @@ const RegistrationStatus: React.FC<RegistrationStatusProps> = ({
 }) => {
   return (
     <>
-      <Box mb={'30px'}>
+      <Text mb={'30px'} fontSize={'xl'}>
         {isSuccessSendCode && !isSuccessVerifyCode
           ? 'Подтвердите электронный адрес'
           : isSuccessVerifyCode
             ? 'Заполните данные для завершения регистрации'
             : 'Добро пожаловать на Exchanger'}
-      </Box>
+      </Text>
       {isSuccessSendCode && !isSuccessVerifyCode && (
         <Box mb={'30px'} color={'#b7bdc6'}>
           6-тизначный код отправлен на ваш адрес эл. почты. Проверочный код необходимо ввести в

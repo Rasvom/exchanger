@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { RegistrationFormValues } from '../types';
-import { Box, Button } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import InputField from '@components/InputField';
 import { AtSignIcon, EmailIcon, InfoOutlineIcon, LockIcon } from '@chakra-ui/icons';
 
@@ -29,7 +29,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-        <Box display={'flex'} flexDirection={'column'} gap={'15px'}>
+        <Flex flexDirection={'column'} gap={'15px'}>
           {!isSuccessSendCode && (
             <InputField
               name='email'
@@ -70,7 +70,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
           <Button type='submit' isLoading={isLoading} bg={'#F0B90B'}>
             Далее
           </Button>
-        </Box>
+        </Flex>
       </form>
     </FormProvider>
   );

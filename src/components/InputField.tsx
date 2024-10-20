@@ -19,7 +19,7 @@ const InputField = ({ name, required, placeholder, type, Icon, label, ...rest }:
       name={name}
       rules={{ required: { value: required || false, message: 'Заполните поле' } }}
       render={({ field, fieldState }) => (
-        <Stack spacing={1}>
+        <Stack spacing={'1px'}>
           {label && (
             <FormLabel htmlFor={name} fontWeight={'400'}>
               {label}

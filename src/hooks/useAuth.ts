@@ -10,6 +10,7 @@ const useAuth = () => {
   const login = async (credentials: { email: string; password: string }) => {
     try {
       const response = await loginMutation(credentials).unwrap();
+      localStorage.setItem('accessToken', response?.accessToken);
       dispatch(setToken(response.accessToken));
     } catch (error) {
       console.error('Login failed: ', error);
@@ -18,7 +19,7 @@ const useAuth = () => {
 
   const logout = () => {
     dispatch(clearToken());
-    document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    localStorage.removeItem('accessToken');
   };
 
   return { token, login, logout, infoLogin };

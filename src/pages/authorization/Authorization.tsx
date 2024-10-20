@@ -1,4 +1,4 @@
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import InputField from '@components/InputField';
 import { AtSignIcon, LockIcon } from '@chakra-ui/icons';
@@ -24,33 +24,45 @@ const Authorization = () => {
     isShowSuccess: false,
     errorTitle: 'Что-то пошло не так =(',
   });
+
   return (
     <FormProvider {...methods}>
-      <Box display={'flex'} justifyContent={'center'}>
-        <Box maxWidth={'sm'}>
-          <Box>Вход в систему</Box>
+      <Flex justifyContent={'center'}>
+        <Box
+          maxWidth={'sm'}
+          border={'1px solid #2b3139'}
+          borderRadius={'24px'}
+          width={'425px'}
+          minHeight={'580px'}
+          p={'40px'}
+        >
+          <Text mb={'30px'} fontSize={'xl'}>
+            Вход в систему
+          </Text>
           <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-            <InputField
-              name='email'
-              label='Эл. почта'
-              placeholder='Эл. почта'
-              required={true}
-              Icon={AtSignIcon}
-            />
-            <InputField
-              name='password'
-              label='Пароль'
-              placeholder='Пароль'
-              required={true}
-              Icon={LockIcon}
-              type='password'
-            />
-            <Button type='submit' isLoading={infoLogin?.isLoading} bg={'#F0B90B'}>
-              Войти
-            </Button>
+            <Flex flexDirection={'column'} gap={'15px'}>
+              <InputField
+                name='email'
+                label='Эл. почта'
+                placeholder='Эл. почта'
+                required={true}
+                Icon={AtSignIcon}
+              />
+              <InputField
+                name='password'
+                label='Пароль'
+                placeholder='Пароль'
+                required={true}
+                Icon={LockIcon}
+                type='password'
+              />
+              <Button type='submit' isLoading={infoLogin?.isLoading} bg={'#F0B90B'}>
+                Войти
+              </Button>
+            </Flex>
           </form>
         </Box>
-      </Box>
+      </Flex>
     </FormProvider>
   );
 };

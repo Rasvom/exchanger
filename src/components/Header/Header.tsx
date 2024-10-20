@@ -1,6 +1,4 @@
 import { useMediaQuery } from '@chakra-ui/react';
-import MobileNavbar from './MobileNavbar';
-import TabletNavbar from './TabletNavbar';
 import DesktopNavbar from './DesktopNavbar';
 
 const Header = () => {
@@ -12,9 +10,9 @@ const Header = () => {
 
   return (
     <>
-      {isMobile && <MobileNavbar />}
-      {isTablet && <TabletNavbar />}
-      {isDesktop && <DesktopNavbar />}
+      {/* {isMobile && <MobileNavbar />}
+      {isTablet && <TabletNavbar />} */}
+      {true && <DesktopNavbar />}
     </>
   );
 };

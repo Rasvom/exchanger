@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import RegistrationForm from './RegistrationForm';
 import RegistrationStatus from './RegistrationStatus';
 import {
@@ -75,7 +75,7 @@ const Registration = () => {
 
   return (
     <>
-      <Box display={'flex'} justifyContent={'center'}>
+      <Flex justifyContent={'center'}>
         <Box
           maxWidth={'sm'}
           border={'1px solid #2b3139'}
@@ -95,7 +95,7 @@ const Registration = () => {
             onSubmit={onSubmit}
           />
         </Box>
-      </Box>
+      </Flex>
     </>
   );
 };

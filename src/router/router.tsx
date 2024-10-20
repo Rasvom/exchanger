@@ -6,6 +6,8 @@ import Layout from '@components/Layout';
 import PageTitle from '@components/PageTitle';
 import Registration from '@pages/registration';
 import { Container } from '@chakra-ui/react';
+import AmlKycPolicy from '@pages/aml-kyc-policy';
+import RulesAgreement from '@pages/rules-agreement';
 
 const routes = [
   {
@@ -16,6 +18,14 @@ const routes = [
     ),
     children: [
       { path: '*', element: <Container>Такая страница нет</Container> },
+      {
+        path: '/aml-kyc-policy',
+        element: <AmlKycPolicy />,
+      },
+      {
+        path: '/rules-agreement',
+        element: <RulesAgreement />,
+      },
       {
         path: '/login',
         element: (

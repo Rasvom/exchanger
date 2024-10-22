@@ -1,18 +1,17 @@
-import { useMediaQuery } from '@chakra-ui/react';
-import DesktopNavbar from './DesktopNavbar';
+import DesktopNavbar from './components/DesktopNavbar';
+import SmallDesktopNavbar from './components/SmallDesktopNavbar';
+import useResponsiveBreakpoints from '@hooks/useResponsiveBreakpoints';
+import TabletNavbar from './components/TabletNavbar';
 
 const Header = () => {
-  const [isMobile, isTablet, isDesktop] = useMediaQuery([
-    '(max-width: 479px)',
-    '(min-width: 480px) and (max-width: 767px)',
-    '(min-width: 768px)',
-  ]);
+  const { isMobile, isLargeMobile, isTablet, isSmallDesktop, isDesktop } =
+    useResponsiveBreakpoints();
 
   return (
     <>
-      {/* {isMobile && <MobileNavbar />}
-      {isTablet && <TabletNavbar />} */}
-      {true && <DesktopNavbar />}
+      {(isTablet || isMobile || isLargeMobile) && <TabletNavbar />}
+      {isSmallDesktop && <SmallDesktopNavbar />}
+      {isDesktop && <DesktopNavbar />}
     </>
   );
 };

@@ -1,9 +1,18 @@
-import { Menu, MenuButton, MenuList, MenuItem, IconButton } from '@chakra-ui/react';
-import { HamburgerIcon, AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { Menu, MenuButton, MenuList, IconButton, MenuItem } from '@chakra-ui/react';
+import { HamburgerIcon, SmallCloseIcon } from '@chakra-ui/icons';
 import useResponsiveBreakpoints from '@hooks/useResponsiveBreakpoints';
+import useAuth from '@hooks/useAuth';
+import InformationMenuItems from './InformationMenuItems';
+import UserMenuItems from './UserMenuItems';
+import AuthMenuItems from './AuthMenuItems';
 
 const OptionsMenu = () => {
   const { isMobile, isLargeMobile, isTablet, isSmallDesktop } = useResponsiveBreakpoints();
+  const { token, logout } = useAuth();
+
+  const isResponsiveView = isSmallDesktop || isTablet || isLargeMobile || isMobile;
+  const showAuthMenuItems = isResponsiveView && !token;
+  const showInformationMenuItems = isTablet || isLargeMobile || isMobile;
 
   return (
     <Menu>
@@ -12,33 +21,18 @@ const OptionsMenu = () => {
         aria-label='Options'
         icon={<HamburgerIcon />}
         variant='outline'
-        fontSize={'24px'}
-        colorScheme={'yellow'}
-        borderColor={'#F0B90B'}
+        fontSize='24px'
+        colorScheme='yellow'
+        borderColor='#F0B90B'
       />
-      <MenuList bg={'black'} borderColor={'gray'}>
-        {(isSmallDesktop || isTablet || isLargeMobile || isMobile) && (
-          <>
-            <MenuItem icon={<AddIcon />} command='⌘T' bgColor={'black'}>
-              Войти
-            </MenuItem>
-            <MenuItem icon={<ExternalLinkIcon />} command='⌘N' bgColor={'black'}>
-              Регистрация
-            </MenuItem>
-          </>
-        )}
-        {(isTablet || isLargeMobile || isMobile) && (
-          <>
-            <MenuItem icon={<ExternalLinkIcon />} command='⌘N' bgColor={'black'}>
-              Обмен
-            </MenuItem>
-            <MenuItem icon={<ExternalLinkIcon />} command='⌘N' bgColor={'black'}>
-              AML & KYC
-            </MenuItem>
-            <MenuItem icon={<ExternalLinkIcon />} command='⌘N' bgColor={'black'}>
-              Соглашение о правилах
-            </MenuItem>
-          </>
+      <MenuList bg='black' borderColor='gray'>
+        {showAuthMenuItems && <AuthMenuItems />}
+        {token && <UserMenuItems />}
+        {showInformationMenuItems && <InformationMenuItems />}
+        {token && (
+          <MenuItem onClick={logout} icon={<SmallCloseIcon fontSize='16px' />} bgColor='black'>
+            Выйти
+          </MenuItem>
         )}
       </MenuList>
     </Menu>

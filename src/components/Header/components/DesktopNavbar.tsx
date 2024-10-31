@@ -2,15 +2,17 @@ import { Flex } from '@chakra-ui/react';
 import Logo from '@components/Logo';
 import AuthLinks from './AuthLinks';
 import NavigationLinks from './NavigationLinks';
+import useAuth from '@hooks/useAuth';
+import OptionsMenu from './OptionsMenu';
 
 const DesktopNavbar = () => {
-  // const { token, logout } = useAuth();
+  const { token } = useAuth();
 
   return (
     <Flex p={'30px 100px'} justifyContent={'space-between'}>
       <Logo />
       <NavigationLinks />
-      <AuthLinks />
+      {token ? <OptionsMenu /> : <AuthLinks />}
     </Flex>
   );
 };

@@ -2,7 +2,7 @@ import { useMediaQuery } from '@chakra-ui/react';
 
 const useResponsiveBreakpoints = () => {
   const [isMobile, isLargeMobile, isTablet, isSmallDesktop, isDesktop] = useMediaQuery([
-    '(max-width: 479px)',
+    '(max-width: 480px)',
     '(min-width: 480px) and (max-width: 767px)',
     '(min-width: 768px) and (max-width: 979px)',
     '(min-width: 980px) and (max-width: 1199px)',

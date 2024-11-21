@@ -9,7 +9,7 @@ const DesktopNavbar = () => {
   const { token } = useAuth();
 
   return (
-    <Flex p={'30px 100px'} justifyContent={'space-between'}>
+    <Flex p={'30px 100px'} justifyContent={'space-between'} bgColor={'#1e1e2a'}>
       <Logo />
       <NavigationLinks />
       {token ? <OptionsMenu /> : <AuthLinks />}

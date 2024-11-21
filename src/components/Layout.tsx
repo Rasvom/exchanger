@@ -4,7 +4,7 @@ import Footer from './Footer';
 import { Container, Flex } from '@chakra-ui/react';
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
 }
 
 const Layout = ({ children }: Props) => {

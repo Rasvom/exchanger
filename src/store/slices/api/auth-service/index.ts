@@ -14,6 +14,7 @@ const authService = api.injectEndpoints({
       query: (QueryArg) => ({
         url: '/user-service/login',
         method: 'POST',
+        credentials: 'include',
         body: QueryArg,
       }),
     }),

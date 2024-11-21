@@ -15,7 +15,7 @@ const Authorization = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: { email: string; password: string }) => {
     login(data);
   };
 
@@ -35,6 +35,7 @@ const Authorization = () => {
           width={'425px'}
           minHeight={'580px'}
           p={'40px'}
+          bgColor={'#1e1e2a'}
         >
           <Text mb={'30px'} fontSize={'xl'}>
             Вход в систему

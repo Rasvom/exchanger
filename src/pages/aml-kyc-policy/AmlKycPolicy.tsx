@@ -2,7 +2,12 @@ import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react';
 
 const AmlKycPolicy = () => {
   return (
-    <Box p={6}>
+    <Box
+      p={6}
+      bgColor={'#232334'}
+      boxShadow={'0 2px 24px rgba(24,32,82,.05)'}
+      borderRadius={'16px'}
+    >
       <Heading as='h1' mb={4}>
         Политика AML и KYC обменника Exchanger
       </Heading>

@@ -1,4 +1,4 @@
-import { Input, InputGroup, InputLeftElement, Stack, FormLabel } from '@chakra-ui/react';
+import { Input, InputGroup, Stack, FormLabel, InputRightElement } from '@chakra-ui/react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 interface Props {
@@ -27,9 +27,9 @@ const InputField = ({ name, required, placeholder, type, Icon, label, ...rest }:
           )}
           <InputGroup>
             {Icon && (
-              <InputLeftElement pointerEvents='none'>
+              <InputRightElement pointerEvents='none'>
                 <Icon color='gray.300' />
-              </InputLeftElement>
+              </InputRightElement>
             )}
             <Input
               {...field}

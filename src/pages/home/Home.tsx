@@ -1,7 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
+import OptionPanel from '@components/OptionPanel';
 
 const Home = () => {
-  return <Link to={'/login'}>Home</Link>;
+  return (
+    <Box>
+      <OptionPanel title='Отдаете'>
+        <Box>124124123</Box>
+      </OptionPanel>
+    </Box>
+  );
 };
 
 export default Home;

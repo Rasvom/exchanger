@@ -83,6 +83,7 @@ const Registration = () => {
           width={'425px'}
           minHeight={'580px'}
           p={'40px'}
+          bgColor={'#1e1e2a'}
         >
           <RegistrationStatus
             isSuccessSendCode={isSuccessSendCode}

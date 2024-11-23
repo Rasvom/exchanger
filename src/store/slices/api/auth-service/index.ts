@@ -14,8 +14,13 @@ const authService = api.injectEndpoints({
       query: (QueryArg) => ({
         url: '/user-service/login',
         method: 'POST',
-        credentials: 'include',
         body: QueryArg,
+      }),
+    }),
+    refreshToken: builder.mutation<{ accessToken: string }, void>({
+      query: () => ({
+        url: '/user-service/refresh-tokens',
+        method: 'GET',
       }),
     }),
     registration: builder.mutation<UserProfile, RegisterRequest>({

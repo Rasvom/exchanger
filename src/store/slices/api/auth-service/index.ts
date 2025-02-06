@@ -11,10 +11,10 @@ import {
 const authService = api.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<AuthResponse, LoginRequest>({
-      query: (QueryArg) => ({
+      query: (queryArg) => ({
         url: '/user-service/login',
         method: 'POST',
-        body: QueryArg,
+        body: queryArg,
       }),
     }),
     refreshToken: builder.mutation<{ accessToken: string }, void>({

@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { store } from './store';
 import router from './router';
-import './styles/styles.css';
 import { ChakraProvider } from '@chakra-ui/react';
+
+import './styles/styles.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

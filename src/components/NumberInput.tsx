@@ -15,14 +15,15 @@ interface Props {
   placeholder?: string;
   img?: string;
   label?: string;
-  type?: string;
+  currencyCode?: string;
+  [prop: string]: unknown;
 }
 
-const PaymentInput = ({
+const NumberInput = ({
   name,
+  currencyCode,
   required,
-  placeholder,
-  type = 'number',
+  placeholder = 'Введите значение',
   img,
   label,
   ...rest
@@ -49,7 +50,10 @@ const PaymentInput = ({
               isInvalid={fieldState.invalid}
               autoComplete='off'
               borderColor='#474D57'
-              type={type}
+              type={'number'}
+              _placeholder={{
+                color: '#aaa',
+              }}
               _hover={{
                 borderColor: '#F0B90B',
               }}
@@ -69,24 +73,33 @@ const PaymentInput = ({
                 }
               }}
             />
-            <InputRightAddon
-              minH={'50px'}
-              bgColor={'transparent'}
-              borderColor='#474D57'
-              gap={'10px'}
-              p={'10px'}
-            >
-              <Text fontSize={'lg'} color={'#898f97'} whiteSpace='nowrap'>
-                RUB
-              </Text>
-              {img && <Image src={img} alt='412' height={'30px'} />}
-            </InputRightAddon>
+            {(img || currencyCode) && (
+              <InputRightAddon
+                minH={'50px'}
+                bgColor={'transparent'}
+                borderColor='#474D57'
+                gap={'10px'}
+                p={'10px'}
+              >
+                {currencyCode && (
+                  <Text
+                    fontSize={'lg'}
+                    color={'#898f97'}
+                    whiteSpace='nowrap'
+                    textTransform={'capitalize'}
+                  >
+                    {currencyCode}
+                  </Text>
+                )}
+                {img && <Image src={img} alt='-' height={'30px'} />}
+              </InputRightAddon>
+            )}
           </InputGroup>
-          {fieldState.invalid && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>}
+          {fieldState.error && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>}
         </Stack>
       )}
     />
   );
 };
 
-export default PaymentInput;
+export default NumberInput;

@@ -1,5 +1,5 @@
-import { Card, CardBody, CardHeader, Heading, Input, Stack } from '@chakra-ui/react';
-
+import { Card, CardBody, CardHeader, Heading, Stack } from '@chakra-ui/react';
+import '../styles/customScrollbar.scss';
 interface Props {
   children: React.ReactNode;
   title: string;
@@ -20,8 +20,8 @@ const OptionPanel = ({ children, title }: Props) => {
         <Heading size='lg'>{title}</Heading>
       </CardHeader>
       <CardBody>
-        <Stack spacing='4'>
-          <Input />
+        <Stack spacing='4' maxH={'400px'} overflowY={'auto'} className='custom-scrollbar'>
+          {children}
         </Stack>
       </CardBody>
     </Card>

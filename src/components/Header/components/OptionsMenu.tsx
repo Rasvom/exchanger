@@ -5,6 +5,7 @@ import useAuth from '@hooks/useAuth';
 import InformationMenuItems from './InformationMenuItems';
 import UserMenuItems from './UserMenuItems';
 import AuthMenuItems from './AuthMenuItems';
+import styles from '../styles/header.module.scss';
 
 const OptionsMenu = () => {
   const { isMobile, isLargeMobile, isTablet, isSmallDesktop } = useResponsiveBreakpoints();
@@ -25,7 +26,7 @@ const OptionsMenu = () => {
         colorScheme='yellow'
         borderColor='#F0B90B'
       />
-      <MenuList bg='black' borderColor='gray'>
+      <MenuList bg='black' borderColor='gray' className={styles['menu-list']}>
         {showAuthMenuItems && <AuthMenuItems />}
         {token && <UserMenuItems />}
         {showInformationMenuItems && <InformationMenuItems />}

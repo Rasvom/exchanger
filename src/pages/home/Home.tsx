@@ -1,14 +1,7 @@
-import { Box } from '@chakra-ui/react';
-import OptionPanel from '@components/OptionPanel';
+import ExchangeForm from './components/exchange/ExchangeForm';
 
 const Home = () => {
-  return (
-    <Box>
-      <OptionPanel title='Отдаете'>
-        <Box>124124123</Box>
-      </OptionPanel>
-    </Box>
-  );
+  return <ExchangeForm />;
 };
 
 export default Home;

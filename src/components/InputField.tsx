@@ -10,7 +10,15 @@ interface Props {
   type?: string;
 }
 
-const InputField = ({ name, required, placeholder, type, Icon, label, ...rest }: Props) => {
+const InputField = ({
+  name,
+  required,
+  placeholder = 'Введите значение',
+  type,
+  Icon,
+  label,
+  ...rest
+}: Props) => {
   const { control } = useFormContext();
 
   return (
@@ -27,7 +35,7 @@ const InputField = ({ name, required, placeholder, type, Icon, label, ...rest }:
           )}
           <InputGroup>
             {Icon && (
-              <InputRightElement pointerEvents='none'>
+              <InputRightElement pointerEvents='none' minH={'50px'}>
                 <Icon color='gray.300' />
               </InputRightElement>
             )}
@@ -39,14 +47,18 @@ const InputField = ({ name, required, placeholder, type, Icon, label, ...rest }:
               autoComplete='off'
               borderColor='#474D57'
               type={type}
+              _placeholder={{
+                color: '#aaa',
+              }}
               _hover={{
                 borderColor: '#F0B90B',
               }}
               focusBorderColor='#F0B90B'
+              minH={'50px'}
               {...rest}
             />
           </InputGroup>
-          {fieldState.invalid && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>}
+          {fieldState.error && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>}
         </Stack>
       )}
     />

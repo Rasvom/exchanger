@@ -3,8 +3,9 @@ import { RootState } from '@store/index';
 import { setToken, clearToken } from '@store/slices/authorization';
 
 export const getBaseQuery = (baseUrl: string) => {
+  const url = 'http://' + location.hostname + ':4000';
   const baseQuery = fetchBaseQuery({
-    baseUrl,
+    baseUrl: url,
     credentials: 'include',
     prepareHeaders(headers, { getState }) {
       const token = (getState() as RootState).auth.token;

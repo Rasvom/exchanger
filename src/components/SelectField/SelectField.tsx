@@ -45,7 +45,7 @@ const SelectField = ({
             getOptionLabel={getOptionLabel}
             getOptionValue={getOptionValue}
             isOptionDisabled={isOptionDisabled}
-            menuPosition='fixed'
+            menuPortalTarget={document.body}
           />
           {fieldState.error && (
             <span style={{ color: 'red', fontSize: '12px' }}>{fieldState.error.message}</span>

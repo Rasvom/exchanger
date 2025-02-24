@@ -21,7 +21,6 @@ const ExchangePanel = ({
   onFocus: () => void;
   children?: React.ReactNode;
 }) => {
-  console.log(123);
   return (
     <OptionPanel title={title}>
       <CryptosAutocomplete name={methodName} />

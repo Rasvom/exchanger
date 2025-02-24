@@ -7,7 +7,7 @@ interface Props {
 const OptionPanel = ({ children, title }: Props) => {
   return (
     <Card
-      minW={'sm'}
+      minW={'376px'}
       maxW={'lg'}
       minH={'lg'}
       maxH={'lg'}

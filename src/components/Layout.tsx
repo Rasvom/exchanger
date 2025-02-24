@@ -9,7 +9,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <Flex flexDirection={'column'} gap={'50px'} bgColor={'#181a20'} color={'white'}>
+    <Flex as={'main'} flexDirection={'column'} gap={'50px'} bgColor={'#181a20'} color={'white'}>
       <Header />
       <Container maxW={'140ch'} minH={'100vh'}>
         {children}

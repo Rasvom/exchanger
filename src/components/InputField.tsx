@@ -8,15 +8,21 @@ interface Props {
   Icon?: JSX.ElementType;
   label?: string;
   type?: string;
+  pattern?: any;
+  color?: string;
+  _placeholder?: { color: string };
 }
 
 const InputField = ({
   name,
-  required,
+  required = false,
   placeholder = 'Введите значение',
   type,
   Icon,
   label,
+  pattern,
+  color,
+  _placeholder,
   ...rest
 }: Props) => {
   const { control } = useFormContext();
@@ -25,11 +31,14 @@ const InputField = ({
     <Controller
       control={control}
       name={name}
-      rules={{ required: { value: required || false, message: 'Заполните поле' } }}
+      rules={{
+        required: { value: required, message: 'Заполните поле' },
+        pattern: pattern,
+      }}
       render={({ field, fieldState }) => (
         <Stack spacing={'1px'}>
           {label && (
-            <FormLabel htmlFor={name} fontWeight={'400'}>
+            <FormLabel htmlFor={name} fontWeight={'400'} color={color}>
               {label}
             </FormLabel>
           )}
@@ -47,9 +56,12 @@ const InputField = ({
               autoComplete='off'
               borderColor='#474D57'
               type={type}
-              _placeholder={{
-                color: '#aaa',
-              }}
+              color={color}
+              _placeholder={
+                _placeholder || {
+                  color: '#aaa',
+                }
+              }
               _hover={{
                 borderColor: '#F0B90B',
               }}
@@ -58,7 +70,7 @@ const InputField = ({
               {...rest}
             />
           </InputGroup>
-          {fieldState.error && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>}
+          {/* {fieldState.error && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>} */}
         </Stack>
       )}
     />

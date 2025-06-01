@@ -9,14 +9,16 @@ interface OptionProps {
 
 interface Props {
   name: string;
+  required?: boolean;
 }
 
-const CryptosAutocomplete = ({ name }: Props) => {
+const CryptosAutocomplete = ({ name, required = false }: Props) => {
   const { data: cryptosData } = useGetTradeAssetsQuery({});
 
   return (
     <SelectField
       name={name}
+      required={required}
       options={cryptosData || []}
       getOptionLabel={(option: OptionProps) => option.name}
       getOptionValue={(option: OptionProps) => option.symbol}

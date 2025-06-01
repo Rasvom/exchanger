@@ -95,7 +95,7 @@ const NumberInput = ({
               </InputRightAddon>
             )}
           </InputGroup>
-          {fieldState.error && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>}
+          {/* {fieldState.error && <span style={{ color: 'red' }}>{fieldState.error?.message}</span>} */}
         </Stack>
       )}
     />

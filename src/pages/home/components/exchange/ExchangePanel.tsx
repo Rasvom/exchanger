@@ -23,13 +23,14 @@ const ExchangePanel = ({
 }) => {
   return (
     <OptionPanel title={title}>
-      <CryptosAutocomplete name={methodName} />
+      <CryptosAutocomplete name={methodName} required={true} />
       <NumberInput
         name={amountName}
         img={img}
         currencyCode={currencyCode}
         onFocus={onFocus}
         placeholder='Введите сумму'
+        required={true}
       />
       {children}
     </OptionPanel>

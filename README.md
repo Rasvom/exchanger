@@ -2,8 +2,6 @@
   <h1>💱 Криптобиржа</h1>
   <p>Фронтенд для платформы торговли криптовалютами</p>
   
-  [![Демо](https://exchanger-htxb.vercel.app/opengraph-image.png?4dfe4f3387f763d3)](https://exchanger-htxb.vercel.app/)
-  
   [🌐 Открыть сайт](https://exchanger-htxb.vercel.app/)
 </div>
 

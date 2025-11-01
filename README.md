@@ -69,6 +69,3 @@ MIT © [Rasvom](https://github.com/Rasvom)
 
 ---
 
-<div align="center">
-  <sub>Создано с ❤️ для торговли криптовалютами</sub>
-</div>

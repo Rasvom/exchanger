@@ -107,6 +107,9 @@ const Registration = () => {
     confirmPassword: string;
     fullName: string;
   }) => {
+
+    if (!isVerified) return;
+    
     if (values.password !== values.confirmPassword) {
       toast({
         title: 'Ошибка',
@@ -155,7 +158,7 @@ const Registration = () => {
   };
 
   return (
-    <Flex justifyContent='center' alignItems='center' minH='100vh'>
+    <Flex justifyContent='center' alignItems='center'>
       <Box
         maxWidth='lg'
         width='100%'

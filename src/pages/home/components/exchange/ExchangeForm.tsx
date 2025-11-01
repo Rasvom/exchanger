@@ -1,5 +1,5 @@
 import { Button, Flex, useToast } from '@chakra-ui/react';
-import { FormProvider, useForm, useWatch, SubmitHandler } from 'react-hook-form';
+import { Controller, FormProvider, useForm, useWatch, SubmitHandler } from 'react-hook-form';
 import { useGetCryptoPricesQuery } from '@store/slices/api/trade-asset-service';
 import { useCreateRequestMutation } from '@store/slices/api/request-service';
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -39,7 +39,7 @@ const ExchangeForm = () => {
     control,
     setValue,
     reset,
-    formState: { errors },
+    formState: {},
   } = methods;
   const sendMethod = useWatch({ name: 'sendMethod', control });
   const receiveMethod = useWatch({ name: 'receiveMethod', control });
@@ -139,30 +139,48 @@ const ExchangeForm = () => {
                 message: 'Неверный формат email адреса',
               }}
             />
-            <InputField
-              name={'phoneNumber'}
-              placeholder='Номер телефона (для оплаты по СПБ)'
-              Icon={PhoneIcon}
-              required={true}
-              pattern={{
-                value: /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/,
-                message: 'Некорректный номер телефона',
+            <Controller
+              name='phoneNumber'
+              control={control}
+              rules={{
+                required: 'Заполните поле',
+                pattern: {
+                  value: /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/,
+                  message: 'Некорректный номер телефона',
+                },
               }}
-              as={PatternFormat}
-              format='+7 (###) ###-##-##'
-              mask='_'
+              render={({ field }: { field: any }) => (
+                <PatternFormat
+                  {...field}
+                  customInput={InputField}
+                  placeholder='Номер телефона (для оплаты по СПБ)'
+                  Icon={PhoneIcon}
+                  format='+7 (###) ###-##-##'
+                  mask='_'
+                  required
+                />
+              )}
             />
-            <InputField
-              name={'receiveAccountNumber'}
-              placeholder='Номер карты'
-              required={true}
-              pattern={{
-                value: /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/,
-                message: 'Некорректный номер карты',
+            <Controller
+              name='receiveAccountNumber'
+              control={control}
+              rules={{
+                required: 'Заполните поле',
+                pattern: {
+                  value: /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/,
+                  message: 'Некорректный номер карты',
+                },
               }}
-              as={PatternFormat}
-              format='#### #### #### ####'
-              mask='_'
+              render={({ field }: { field: any }) => (
+                <PatternFormat
+                  {...field}
+                  customInput={InputField}
+                  placeholder='Номер карты'
+                  format='#### #### #### ####'
+                  mask='_'
+                  required
+                />
+              )}
             />
             <InputField name={'recipientName'} placeholder='Имя получателя' required={true} />
             <InputField name={'telegramLink'} placeholder='Ваш Telegram' required={true} />

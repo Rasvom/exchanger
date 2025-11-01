@@ -10,6 +10,7 @@ const useAuth = () => {
   const login = async (credentials: { email: string; password: string }) => {
     try {
       const response = await loginMutation(credentials).unwrap();
+      console.log(response);
       localStorage.setItem('accessToken', response?.accessToken);
       dispatch(setToken(response.accessToken));
     } catch (error) {

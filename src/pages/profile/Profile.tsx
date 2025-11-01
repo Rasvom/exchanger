@@ -48,14 +48,10 @@ const Profile = () => {
   const toast = useToast();
   const { data: userProfile, isLoading: isLoadingProfile } = useGetUserProfileQuery({});
 
-  const [updateProfile, { isLoading: isUpdatingProfile, ...updateProfileInfo }] =
-    useUpdateProfileMutation();
-  const [changePassword, { isLoading: isChangingPassword, ...changePasswordInfo }] =
-    useChangePasswordMutation();
-  const [changeEmail, { isLoading: isChangingEmail, ...changeEmailInfo }] =
-    useChangeEmailMutation();
-  const [sendConfirmationCode, { isLoading: isSendingCode, ...sendCodeInfo }] =
-    useSendConfirmationCodeMutation();
+  const [updateProfile, { isLoading: isUpdatingProfile }] = useUpdateProfileMutation();
+  const [changePassword, { isLoading: isChangingPassword }] = useChangePasswordMutation();
+  const [changeEmail, { isLoading: isChangingEmail }] = useChangeEmailMutation();
+  const [sendConfirmationCode, { isLoading: isSendingCode }] = useSendConfirmationCodeMutation();
 
   const { isOpen: isOpenProfile, onOpen: onOpenProfile, onClose: onCloseProfile } = useDisclosure();
   const {

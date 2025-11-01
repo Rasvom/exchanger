@@ -14,7 +14,7 @@ const selectStyles: StylesConfig = {
       borderColor: '#F0B90B',
     },
   }),
-  indicatorSeparator: (provided, state) => ({
+  indicatorSeparator: (provided) => ({
     ...provided,
     backgroundColor: '#474D57',
   }),

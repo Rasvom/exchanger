@@ -2,14 +2,12 @@ import { Box, Button, Flex, Text, useToast } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import InputField from '@components/InputField';
 import { AtSignIcon, LockIcon } from '@chakra-ui/icons';
-import { useLoginMutation } from '@store/slices/api/auth-service';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useAuth from '@hooks/useAuth';
 
 const Authorization = () => {
-  const navigate = useNavigate();
   const toast = useToast();
-  const [login, { isLoading }] = useLoginMutation();
+  const { login} = useAuth();
 
   const methods = useForm({
     defaultValues: {
@@ -20,8 +18,7 @@ const Authorization = () => {
 
   const onSubmit = async (values: { email: string; password: string }) => {
     try {
-      await login(values).unwrap();
-      navigate('/');
+      await login(values)
     } catch (error: any) {
       toast({
         title: 'Ошибка входа',
@@ -34,7 +31,7 @@ const Authorization = () => {
   };
 
   return (
-    <Flex justifyContent='center' alignItems='center' minH='100vh' bg='#232334'>
+    <Flex justifyContent='center' alignItems='center' minH='100vh'>
       <Box
         maxWidth='lg'
         width='100%'
@@ -77,7 +74,6 @@ const Authorization = () => {
                 type='submit'
                 bg='#F0B90B'
                 color='black'
-                isLoading={isLoading}
                 _hover={{ bg: '#d9a30b' }}
               >
                 Войти

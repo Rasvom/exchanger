@@ -155,7 +155,7 @@ const Registration = () => {
   };
 
   return (
-    <Flex justifyContent='center' alignItems='center' minH='100vh' bg='#232334'>
+    <Flex justifyContent='center' alignItems='center' minH='100vh'>
       <Box
         maxWidth='lg'
         width='100%'

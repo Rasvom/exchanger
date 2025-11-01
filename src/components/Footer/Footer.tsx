@@ -3,7 +3,7 @@ import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <Box as='footer' py={6} px={4} bg='#1e1e2a' borderTop='1px' borderColor='gray.200'>
+    <Box as='footer' py={6} px={4} bg='#1e1e2a'>
       <Flex direction='column' align='center' maxW='1200px' mx='auto'>
         <Text fontSize='sm' color='gray.600' mb={2}>
           © 2023 Exchanger. Все права защищены.

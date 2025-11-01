@@ -2,8 +2,7 @@ import { fetchBaseQuery, FetchArgs, BaseQueryApi } from '@reduxjs/toolkit/query'
 import { RootState } from '@store/index';
 import { setToken, clearToken } from '@store/slices/authorization';
 
-export const getBaseQuery = (baseUrl: string) => {
-  const url = 'http://' + location.hostname + ':4000';
+export const getBaseQuery = (url: string) => {
   const baseQuery = fetchBaseQuery({
     baseUrl: url,
     credentials: 'include',

@@ -32,7 +32,7 @@ const SelectField = ({
       control={control}
       name={name}
       rules={{ required: { value: required || false, message: 'Заполните поле' } }}
-      render={({ field, fieldState }) => (
+      render={({ field }) => (
         <>
           <Box>
             <Select

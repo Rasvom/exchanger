@@ -11,10 +11,10 @@ import {
 const authService = api.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<AuthResponse, LoginRequest>({
-      query: (queryArg) => ({
+      query: (credentials) => ({
         url: '/user-service/login',
         method: 'POST',
-        body: queryArg,
+        body: credentials,
       }),
     }),
     refreshToken: builder.mutation<{ accessToken: string }, void>({
@@ -24,24 +24,24 @@ const authService = api.injectEndpoints({
       }),
     }),
     registration: builder.mutation<UserProfile, RegisterRequest>({
-      query: (queryArg) => ({
+      query: (userData) => ({
         url: '/user-service/registration',
         method: 'POST',
-        body: queryArg,
+        body: userData,
       }),
     }),
     sendConfirmationCode: builder.mutation<void, SendConfirmationCodeRequest>({
-      query: (queryArg) => ({
+      query: (data) => ({
         url: '/user-service/send-confirmation-code',
         method: 'POST',
-        body: queryArg,
+        body: data,
       }),
     }),
     verifyConfirmationCode: builder.mutation<void, VerifyConfirmationCodeRequest>({
-      query: (queryArg) => ({
+      query: (data) => ({
         url: '/user-service/verify-confirmation-code',
         method: 'POST',
-        body: queryArg,
+        body: data,
       }),
     }),
   }),

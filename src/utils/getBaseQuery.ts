@@ -22,7 +22,7 @@ export const getBaseQuery = (url: string) => {
     api: BaseQueryApi,
     extraOptions: object,
   ): Promise<any> => {
-    const result = await baseQuery(args, api, extraOptions);
+    let result = await baseQuery(args, api, extraOptions);
 
     if (result.meta?.response?.headers.get('X-Refresh-Tokens') === 'true') {
       const refreshResult = await baseQuery(
@@ -33,14 +33,32 @@ export const getBaseQuery = (url: string) => {
 
       if (refreshResult.data) {
         const { accessToken } = refreshResult.data as { accessToken: string };
-
         api.dispatch(setToken(accessToken));
         localStorage.setItem('accessToken', accessToken);
+        
+        const retryArgs = typeof args === 'string' 
+          ? { url: args, method: 'GET' } 
+          : args;
+          
+        if ('headers' in retryArgs) {
+          retryArgs.headers = {
+            ...retryArgs.headers,
+            'Authorization': `Bearer ${accessToken}`
+          };
+        }
+        
+        result = await baseQuery(retryArgs, api, extraOptions);
       } else {
         console.error('Ошибка при обновлении токенов.');
         api.dispatch(clearToken());
         localStorage.removeItem('accessToken');
+        return { error: { status: 401, data: 'Ошибка авторизации' } };
       }
+    }
+
+    if (result.error?.status === 401) {
+      api.dispatch(clearToken());
+      localStorage.removeItem('accessToken');
     }
 
     return result;
